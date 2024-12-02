@@ -1,0 +1,29 @@
+import event, time, cyberpi
+
+@event.is_press('a')
+def is_btn_press():
+    cyberpi.audio.play('start')
+    cyberpi.led.on(255, 255, 255, "all")
+    cyberpi.led.set_bri(100)
+
+@event.is_press('b')
+def is_btn_press1():
+    cyberpi.led.on(208, 2, 27, "all")
+    cyberpi.led.set_bri(100)
+
+@event.is_press('left')
+def is_joy_press():
+    cyberpi.led.off("all")
+
+@event.is_press('right')
+def is_joy_press1():
+    cyberpi.led.on(27, 255, 2, "all")
+
+@event.is_press('middle')
+def is_joy_press2():
+    cyberpi.audio.set_vol(30)
+    cyberpi.led.play('meteor_blue')
+    while not cyberpi.controller.is_press('middle'):
+      cyberpi.led.play('meteor_blue')
+      cyberpi.audio.play_until('beeps')
+      cyberpi.audio.add_vol(10) 
